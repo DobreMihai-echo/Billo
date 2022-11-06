@@ -159,7 +159,12 @@ The system shall allow providers to register their service so that consumers can
 subscribe to them later.
 
 The system shall allow providers to get monthly reports with the payments made
-by the consumers to their service.
+by the consumers to their service. The reports shall include information about
+the consumers that paid their bills, new registerd consumers and consumers that
+left their service.
+
+The system shall allow providers to get a list of all consumers subscribed to
+their service.
 
 2.2 Medium Priority
 The system shall display to the consumer a list of previous payments with
