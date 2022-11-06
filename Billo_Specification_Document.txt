@@ -1,0 +1,409 @@
+Table of Contents
+1. Introduction
+1.1 Purpose of Document
+1.2 Project Summary
+1.3 Background
+1.4 Project Scope
+1.5 System Purpose
+1.5.1 Users
+1.5.2 Location
+1.5.3 Responsibilities
+1.5.4 Need
+1.6 Overview of Document
+2. Functional Objectives
+2.1 High Priority
+2.2 Medium Priority
+2.3 Low Priority
+3. Non-Functional Objectives
+3.1 Reliability
+3.2 Usability
+3.3 Performance
+3.4 Security
+3.5 Supportability
+3.6 Online user help
+4. The Use Case Model
+4.1 System Use Case Diagram
+4.2 Use Case Descriptions (for high priority cases)
+U1. Login User
+U2. Register User
+U3. Edit Personal Information
+U3. Display Bills Information
+U3. Pay Bill
+U3. Add or Remove Providers
+U3. Request Provider Account
+U3. Get Monthly Report
+
+
+1. Introduction
+1.1 Purpose of Document
+This is a Requirements Specification document for a new web-based bill paying
+solution created for the Banking Software Development course. The new system
+will provide customers and, respectively, service providers the ability to pay
+various bills and, respectively, to recive money for the provided services.
+This document describes the scope, objectives and goal of the new system. In
+addition to describing non-functional requirements, this document models the
+functional requirements with use cases, interaction diagrams, and class models.
+This document is intended to direct the design and implementation of the target
+system in an object oriented language.
+
+1.2 Project Summary
+Project Name: Billo, a bill paying service
+Participants: Caragop Ioan-Alexandru, Ciulei Cezar-Andrei, Dobre Mihai, Popescu
+Lucian-Ioan
+
+1.3 Background
+In the current social context, we identified the need to move towards a solution
+that would enable people to keep all billing information regarding
+electrical current consumption, phone invoice, etc. in the same place so that
+they can be easily manipulated. At the moment, consumers either recive email or
+SMS notifications to remind them to use the provider's platform in order to make
+the payment for the specific service. This process is akward most of the time as
+the consumers forget to make the payment or they need to login to provider's
+platform, resulting in an intermediate step nobody asked for.
+
+Currently, providers as Enel inform the consumers through an informative email
+about the amount of money that needs to be paid in the respective month.
+Afterwards the consumer needs to login into my.enel.ro, introduce the
+credentials, select the payments tab and proceed further with the payment. This
+has become the de facto standard for other service providers as well, some
+examples are Digi, various monthly bank credits and various learning platforms
+for students such as Amboss. 
+
+Using our innovative and technical skills, we aim to guide the consumers and the
+service providers through the process of choosing our alternative bill paying
+system. The new system will have a clean interface so that various consumers age
+groups can use it and the steps involved in making a payment to be as few as
+possible.  For service providers, the installment on the new platform should be
+as straight forward as possible.
+
+1.4 Project Scope
+The scope of our project is a web-based system that allows consumers to pay
+bills smoothly without involvement from third-party platforms. The current
+platforms of providers will be replaced with our solution that will act as a
+single source of truth for all the payments made by a person.
+
+
+1.5 System Purpose
+1.5.1 Users
+Those who will primarily benefit from the new system will be:
+  * Consumers - they will find the bills navigation, identification and payment
+  easier. Consumers will be able to choose what bill they will make a payment
+  for without visiting the provider's payment platform
+  * Providers - they will register their reccurent payment orders on our system
+  and will be notified when the consumers make payments to their services.
+
+1.5.2 Location
+The system will be available to any potential user using the Internet. To acces
+our system, they need acces to a web browser that will direct them to the bill
+paying system.
+
+1.5.3 Responsibilities
+The primary responsibilities of the new system:
+  * provide consumers direct access to up-to-date billing informations based on
+  which they can take the decision to pay
+  * provide consumers the ability to select the banking account from which the
+  payments will be made
+  * allow providers to place an recurrent payment order through the website
+  based on the contract between the provider and the consumer
+  * allow providers to get reports of consumers that payed the bills in a
+  specific month
+  * allow differential access to web pages based on type of user
+
+Other desired features of the new system:
+  * a consistent "look and feel" throughout the website
+  * report issues while navigating the website
+  * password protection scheme for non-public web pages
+
+1.5.4 Need
+This system is needed in order to make the bills paying process less compilcated
+for a wide range of consumers. Replacement of current payment platforms will
+eliminate the shortcomings of those platforms. The system will enable consumers
+to focus on more important things than paying bills.
+
+1.6 Overview of Document
+The rest of this document gives the detailed specifications for the bills paying
+system. It is organized as follows:
+  * Section 2: Functional Objectives
+Each objective gives a desired behavior for the system, a business
+justification, and a measure to determine if the final system has successfully
+met the objective. These objectives are organized by priority. In order for the
+new system to be considered successful, all high priority objectives must be met.
+  * Section 3: Non-Functional Objectives
+This section is organized by category. Each objective specifies a technical
+requirement or constraint on the overall characteristics of the system. Each
+objective is measurable.
+  * Section 4: Use Case Model
+The specific behavioral requirements of the system are detailed in a series of
+use cases. Each use case accomplishes a business task and shows the interaction
+between the system and some outside actor. Each use case is described with text.
+
+
+2. Functional Objectives
+2.1 High Priority
+The system shall display to the consumer all bills that must be paied for the
+current month. Each bill shall come with descriptive information about the
+amount of money and the due date. Other information is optional.
+
+The system shall allow the consumers to pay a selected bill based on the
+introduced banking card.
+
+The system shall allow the consumer to add banking card information which will
+be used to make the bill payments. This should be done at registration time.
+
+The system shall allow consumers to add or remove providers based on their
+needs. In a real environment, this should be backed up by legal documents,
+however for our project we consider the documents irrelevant and let the
+consumer proceed with this feature.
+
+The system shall allow providers to register their service so that consumers can
+subscribe to them later.
+
+The system shall allow providers to get monthly reports with the payments made
+by the consumers to their service.
+
+2.2 Medium Priority
+The system shall display to the consumer a list of previous payments with
+details for each payment.
+
+The system shall let the consumer add multiple banking cards and let the
+consumer switch between them.
+
+The system shall notify the consumer via email or SMS when the due date for a
+payment is near.
+
+2.3 Low Priority
+
+The system shall have a calendar with the due dates for the current month.
+
+The system shall let the consumer edit stored personal information.
+
+The system shall let the consumer report an issue at any time.
+
+3. Non-Functional Objectives
+3.1 Reliability
+The system should be completely operational for all users (consumers and
+providers) at all times. When this is not possible due to issues of any kind
+then we must clearly inform the users.
+
+3.2 Usability
+Various age groups should have the ability to navigate in the system, including
+teenagers that are able to pay bills, adults and the elderly.
+
+3.3 Performance
+The system shall be able to support a reasonable number of simultaneous users.
+As this is a school project and not a real world project, we do not impose
+strict constraints here. We as a team want to be able to use the system at the
+same time plus the testers that might be other student enrolled in this class
+or the professors.
+
+The mean time to download and view the provider's monthly report in plain text
+format shall not exceed 1 minute. For bigger reports, wait times might be
+longer, however the provider should be informed about that when the 1 minute
+threshold exceeds.
+
+3.4 Security
+The system shall provide password protected access to web pages that are to be
+viewed only by consumers and providers.
+Sensitive personal information such as card data shall be encrypted when stored
+in our system.
+
+3.5 Supportability
+The system web site shall be viewable from all state-of-the art browsers
+including Google Chrome, Mozilla Firefox, etc.
+
+3.6 Online user help
+The system shall provide the consumers and the providers the ability to report
+problems. We will mock the results sent back to them as answers because it is
+irrelevant to project's scope.
+
+
+4. The Use Case Model
+4.1 System Use Case Diagram
+
+4.2 Use Case Descriptions 
+Notes:
+ For all use cases, the user can cancel the use case at any step that requires
+user input. This action ends the use case. Any data collected during that use
+case is lost.
+
+ For all use cases that require a logged in user, the current login session is
+updated during the use case to reflect the navigation paths through the use
+case.
+
+U1.
+Use Case Name: Login User
+Summary:
+ In order to get personalized or restricted information, make payments or do
+ other specialized transactions a user must login so that that the system can
+ determine his access level.
+User: Consumer
+Basic Flow:
+ 1. The use case starts when a user indicates that he wants to login.
+ 2. The system requests the username and password.
+ 3. The user enters his username and password.
+ 4. The system verifies the username and password against all registered users.
+ 5. The system starts a login session and displays a welcome message.
+Alternative Flows:
+ Step 4:
+      If username is invalid, the use case goes back to step 2.
+ Step 4:
+      If the password is invalid the system requests that the user re-enter the
+      password. When the user enters another password the use case continues
+      with step 4 using the original username and new password.
+Preconditions:
+ The user is registered.
+Postconditions:
+ The user can now obtain data and perform functions according to his registered
+ access level.
+Business Rules:
+ Some data and functions are restricted to certain types of users or users with
+ a particular access level.
+
+U2.
+Use Case Name: Register User
+Summary:
+In order to get personalized or restricted information, place orders or do other specialized transactions a new user must register a username and password.
+ In order to get personalized or restricted information, make payments or do
+ other specialized transactions a new user must register a username and a
+ password.
+User: Consumer
+Basic Flow:
+ 1. The use case start when a user indicates that he wants to register.
+ 2. The system requests a username and password.
+ 3. The user enters a username and password.
+ 4. The system checks that the username does not duplicate any existing
+ registered usernames.
+ 5. The system requests a name (*), street, city, state, zipcode, phone and
+ email address. Items marked by (*) are required.
+ 6. The user enters the information.
+ 7. The system requests a card number, card owner name and card 3 digits code.
+ All items are required.
+ 8. The user enters the information.
+ 9. The system starts a login session and displays a welcome message.
+Alternative Flows:
+ Step 4: If the username duplicates an existing username the system displays a
+ message and the use case goes back to step 2.
+ Step 5: If the user does not enter a required field, a message is displayed
+ and the use case repeats step 4.
+ Step 7: If the user does not enter all required fields, a message is displayed
+ and the use case repeats step 5.
+Preconditions:
+ none
+Postconditions:
+ The user can now obtain data and perform functions according to his registered
+ access level.
+
+U3.
+Use Case Name: Edit Personal Information
+Summary:
+ This use case allows a registered user to enter or change his personal
+ information.
+User: Consumer
+Basic Flow:
+ 1. The use case start when a user indicates that he wants to enter or modify
+ his personal information.
+ 2. The system displays all personal information including name, street,
+ city, state, zipcode, phone, email address. All fields are editable.
+ 3. The user saves the changes.
+ 4. A message is displayed that informs the user that the operation was
+ successful.
+Alternative Flows:
+ Step 4:
+      An error might occur, in which case an appropiate message is displayed.
+      User changes are not saved.
+Preconditions:
+ The user is logged in.
+Postconditions:
+ The personal information is edited accordingly.
+
+U4.
+Use Case Name: Display Bills Information
+Summary:
+ This use case allows a registered user to see all active bills.
+User: Consumer
+Basic Flow:
+ 1. The use case start when a user navigates the home page.
+ 2. The system displays a list of active bills with descriptive information
+ associated to each bill.
+Preconditions:
+ The user is logged in.
+
+U5.
+Use Case Name: Pay Bill
+Summary:
+ This use case allows a registered user to pay a bill using already introduced
+ card details.
+User: Consumer
+Basic Flow:
+ 1. The use case start when a user selects a bill from U4.
+ 2. The system will display a "Pay" button that the user must click in order to
+ pay the bill.
+Alternative Flows:
+ Step 2:
+      An error might occur, in which case an appropiate message is displayed.
+Preconditions:
+ The user selects a bill displayed in U4.
+Postconditions:
+ The bill is payed and the bill is transferred in the past transaction list.
+
+U6.
+Use Case Name: Add or Remove Providers
+Summary:
+ This use case allows a registered user add or remove active providers from its
+ personal list.
+User: Consumer
+Basic Flow:
+ 1. The use case start when a user indicates that he wants to modify the
+ providers list.
+ 2. The system will display the providers list with the option to delete a
+ provider and to add a new provider.
+ 3. If the user decides to add a new provider then he must introduce the
+ following details about the provider: name, bank account. All fields are
+ required.
+ 4. The system saves the details about the new provider.
+ 5. If the user decides to delete a provider the system will display a message
+ that will warn the user about this action.
+Alternative Flows:
+ Step 2:
+      An error might occur, in which case an appropiate message is displayed.
+ Step 4:
+      An error might occur, in which case an appropiate message is displayed.
+      Flow is redirected to Step 3.
+Preconditions:
+  The user is registered.
+Postconditions:
+  The providers list is modified.
+
+U7.
+Use Case Name: Request Provider Account
+Summary:
+ This use case allows a person to request a provider account.
+User: Undefined
+Basic Flow:
+ 1. On the login page, a button is displayed that will ask the user if he wants
+ a provider account.
+ 2. When the user presses the button, an email to our admin team is sent with
+ details about the provider account including name of the provider, email address
+ of the provider and bank account of the provider. All items are required.
+ 3. The system asks for the above information before sending the email to the
+ admin team.
+ 4. After the admin team reviews the request, the provider account will be
+ created and details will be sent to the provider's email address.
+Postconditions:
+  The user gets a provider account.
+
+U7.
+Use Case Name: Get Montly Report
+Summary:
+ This use case allows a registered user to get montlhy reports containg
+ information about the consumers that paied their bills.
+User: Provider
+Basic Flow:
+ 1. The use case start when a user navigates the home page.
+ 2. The system provides a list of reports including the report of this month and
+ past reports.
+ 3. The user selects a report and it will be downloaded in plain text.
+Preconditions:
+  The user is registered.
+Postconditions:
+  The user gets the montly report.
