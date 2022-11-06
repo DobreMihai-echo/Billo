@@ -32,6 +32,7 @@ U5. Pay Bill
 U6. Add or Remove Providers
 U7. Request Provider Account
 U8. Get Monthly Report
+U9. Approve/Reject Provider Request
 
 
 1. Introduction
@@ -91,6 +92,8 @@ Those who will primarily benefit from the new system will be:
   for without visiting the provider's payment platform
   * Providers - they will register their reccurent payment orders on our system
   and will be notified when the consumers make payments to their services.
+  * Administrator - they will aprove provides' requests to join the system and
+  will answer all technical issues met while navigating the system
 
 1.5.2 Location
 The system will be available to any potential user using the Internet. To acces
@@ -165,6 +168,9 @@ left their service.
 
 The system shall allow providers to get a list of all consumers subscribed to
 their service.
+
+The system shall allow administrators to approve or reject providers that want
+to join the platform.
 
 2.2 Medium Priority
 The system shall display to the consumer a list of previous payments with
@@ -386,17 +392,17 @@ User: Undefined
 Basic Flow:
  1. On the login page, a button is displayed that will ask the user if he wants
  a provider account.
- 2. When the user presses the button, an email to our admin team is sent with
+ 2. When the user presses the button, a request to our admin team is sent with
  details about the provider account including name of the provider, email address
  of the provider and bank account of the provider. All items are required.
- 3. The system asks for the above information before sending the email to the
+ 3. The system asks for the above information before sending the request to the
  admin team.
  4. After the admin team reviews the request, the provider account will be
  created and details will be sent to the provider's email address.
 Postconditions:
   The user gets a provider account.
 
-U7.
+U8.
 Use Case Name: Get Montly Report
 Summary:
  This use case allows a registered user to get montlhy reports containg
@@ -411,3 +417,20 @@ Preconditions:
   The user is registered.
 Postconditions:
   The user gets the montly report.
+  
+U9.
+Use Case Name: Approve/Reject Provider Request
+Summary:
+ This use case allows an user to approve or reject requests of the providers
+ that want to join the platform.
+User: Administrator
+Basic Flow:
+ 1. The use case start when a user navigates the home page.
+ 2. The system provides a list of requests to join sorted by arrival date with
+ two buttons attached to each request, i.e. 'approve' and 'reject'.
+ 3. The user clicks a button ('approve' or 'reject'), the request disappears
+ from the list and a notification is sent to the provider.
+Preconditions:
+  The user is registered.
+Postconditions:
+  The user modifies the list of requests to join.
