@@ -27,11 +27,11 @@ Table of Contents
 U1. Login User
 U2. Register User
 U3. Edit Personal Information
-U3. Display Bills Information
-U3. Pay Bill
-U3. Add or Remove Providers
-U3. Request Provider Account
-U3. Get Monthly Report
+U4. Display Bills Information
+U5. Pay Bill
+U6. Add or Remove Providers
+U7. Request Provider Account
+U8. Get Monthly Report
 
 
 1. Introduction
@@ -262,7 +262,6 @@ Business Rules:
 U2.
 Use Case Name: Register User
 Summary:
-In order to get personalized or restricted information, place orders or do other specialized transactions a new user must register a username and password.
  In order to get personalized or restricted information, make payments or do
  other specialized transactions a new user must register a username and a
  password.
