@@ -34,3 +34,5 @@ spring.datasource.url should have the server(which should be localhost), followe
 
 # Billo frontend start
 When you clone the repository, you will have 2 folders. Open the "frontend" folder with your IDE (preferably Visual Studio Code). You will need to type "npm install" for the node_modules to be downloaded. After this step is complete, type "npm start" for the frontend application to start.
+
+https://www.figma.com/file/8oclQmxz7Ym3nzd7FudWVM/Billo?node-id=0%3A1&t=lx3So1qbNAZC6G72-0
