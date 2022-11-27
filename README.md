@@ -40,6 +40,17 @@ https://www.figma.com/file/8oclQmxz7Ym3nzd7FudWVM/Billo?node-id=0%3A1&t=lx3So1qb
 # Billo API Documentation using Swagger Hub
 You can find the Public Api Documentation by accessing the following link: https://app.swaggerhub.com/apis/MIHAIDOBRE1807/Billo_Public_Api/1.0.0
 
-#Billo Architecture Diagrams
-1. ![System_Context_Diagram-System Context drawio](https://user-images.githubusercontent.com/83023216/204128587-df9c4701-2fbc-4034-8d55-ae26c425c949.png)
+# Billo Architecture Diagrams
+1. System Context Diagram 
+![System_Context_Diagram-System Context drawio](https://user-images.githubusercontent.com/83023216/204128587-df9c4701-2fbc-4034-8d55-ae26c425c949.png)
+
+2. System Container Diagram for Consumer
+![System_Container_Diagram_Consumer drawio](https://user-images.githubusercontent.com/83023216/204128642-d03565bc-fc8a-4789-9124-2685ecfa4bd9.png)
+
+3. System Container Diagram for Provider
+![System_Container_Diagram_Providers drawio](https://user-images.githubusercontent.com/83023216/204128668-79c3fc3f-02aa-47e7-93a5-38a68d75ae1d.png)
+
+4. Use Case Diagram
+![Use Case Dia drawio](https://user-images.githubusercontent.com/83023216/204128674-4fbc903c-cfdc-4683-9546-2021ee653eca.png)
+
 
