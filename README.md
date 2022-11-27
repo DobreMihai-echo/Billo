@@ -39,3 +39,7 @@ https://www.figma.com/file/8oclQmxz7Ym3nzd7FudWVM/Billo?node-id=0%3A1&t=lx3So1qb
 
 # Billo API Documentation using Swagger Hub
 You can find the Public Api Documentation by accessing the following link: https://app.swaggerhub.com/apis/MIHAIDOBRE1807/Billo_Public_Api/1.0.0
+
+#Billo Architecture Diagrams
+1. ![System_Context_Diagram-System Context drawio](https://user-images.githubusercontent.com/83023216/204128587-df9c4701-2fbc-4034-8d55-ae26c425c949.png)
+
