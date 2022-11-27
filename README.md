@@ -45,10 +45,12 @@ You can find the Public Api Documentation by accessing the following link: https
 ![System_Context_Diagram-System Context drawio](https://user-images.githubusercontent.com/83023216/204128587-df9c4701-2fbc-4034-8d55-ae26c425c949.png)
 
 2. System Container Diagram for Consumer
-![System_Container_Diagram_Consumer drawio](https://user-images.githubusercontent.com/83023216/204128642-d03565bc-fc8a-4789-9124-2685ecfa4bd9.png)
+![System_Container_Diagram_Consumer drawio (1)](https://user-images.githubusercontent.com/83023216/204128927-9ad9adfb-e5c9-48f8-8806-48215d0a39a7.png)
+
 
 3. System Container Diagram for Provider
-![System_Container_Diagram_Providers drawio](https://user-images.githubusercontent.com/83023216/204128668-79c3fc3f-02aa-47e7-93a5-38a68d75ae1d.png)
+![System_Container_Diagram_Providers drawio (1)](https://user-images.githubusercontent.com/83023216/204128932-47972278-80d7-42ff-abe4-f289e6d0301e.png)
+
 
 
 4. Use Case Diagram
