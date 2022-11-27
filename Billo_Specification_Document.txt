@@ -108,7 +108,7 @@ The primary responsibilities of the new system:
   payments will be made
   * allow providers to place an recurrent payment order through the website
   based on the contract between the provider and the consumer
-  * allow providers to get reports of consumers that payed the bills in a
+  * allow providers to get reports of consumers that paid the bills in a
   specific month
   * allow differential access to web pages based on type of user
 
@@ -284,7 +284,7 @@ Basic Flow:
  4. The system checks that the username does not duplicate any existing
  registered usernames.
  5. The system requests a name (*), street, city, state, zipcode, phone and
- email address. Items marked by (*) are required.
+ email address (*). Items marked by (*) are required.
  6. The user enters the information.
  7. The system requests a card number, card owner name and card 3 digits code.
  All items are required.
@@ -354,7 +354,7 @@ Alternative Flows:
 Preconditions:
  The user selects a bill displayed in U4.
 Postconditions:
- The bill is payed and the bill is transferred in the past transaction list.
+ The bill is paid and the bill is transferred in the past transaction list.
 
 U6.
 Use Case Name: Add or Remove Providers
