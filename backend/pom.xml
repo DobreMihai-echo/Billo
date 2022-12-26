@@ -4,7 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.billo</groupId>
 	<artifactId>backend</artifactId>
+	<packaging>pom</packaging>
 	<version>0.0.1-SNAPSHOT</version>
+	<modules>
+		<module>user</module>
+	</modules>
 	<name>backend</name>
 	<description>Backend Application for Billo Project</description>
 	<properties>
