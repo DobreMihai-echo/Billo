@@ -8,13 +8,15 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<modules>
 		<module>user</module>
-	</modules>
+        <module>eureka-server</module>
+    </modules>
 	<name>backend</name>
 	<description>Backend Application for Billo Project</description>
 	<properties>
 		<java.version>11</java.version>
 		<spring.boot.maven.plugin.version>2.6.2</spring.boot.maven.plugin.version>
 		<spring.boot.dependencies.version>2.6.2</spring.boot.dependencies.version>
+		<spring.cloud-version>2021.0.0</spring.cloud-version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -35,6 +37,13 @@
 				<version>${spring.boot.dependencies.version}</version>
 				<scope>import</scope>
 				<type>pom</type>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring.cloud-version}</version>
+				<type>pom</type>
+				<scope>import</scope>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
