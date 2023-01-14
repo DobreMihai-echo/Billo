@@ -13,6 +13,8 @@ import { HomeComponent } from './home/home.component';
 import { ConsumerComponent } from './consumer/consumer.component';
 import { AdminComponent } from './admin/admin.component';
 import { NavigationComponent } from './navigation/navigation.component';
+import { InvoiceComponent } from './invoice/invoice.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -22,15 +24,17 @@ import { NavigationComponent } from './navigation/navigation.component';
     HomeComponent,
     ConsumerComponent,
     AdminComponent,
-    NavigationComponent
+    NavigationComponent,
+    InvoiceComponent,
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [httpInterceptorProviders],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
