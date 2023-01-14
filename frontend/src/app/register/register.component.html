@@ -1,0 +1,101 @@
+<section class="vh-100">
+    <div class="container mt-5">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-md-9 col-lg-6 col-xl-5">
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+                    class="img-fluid" alt="Sample image">
+            </div>
+            <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+                <form  name="form" (ngSubmit)="loginForm.form.valid && onSubmit(loginForm)" #loginForm="ngForm">
+                    <!-- Email input -->
+                    <div class="form-outline mb-4">
+                        <input name="username" type="text" id="form3Example3" class="form-control form-control-lg"
+                            placeholder="Enter your username" [(ngModel)]="form.username" required #username="ngModel"
+                            [ngClass]="{ 'is-invalid': loginForm.submitted && username.errors }" />
+                        <label class="form-label" for="form3Example3">Username</label>
+                    </div>
+
+                    <div *ngIf="username.errors && loginForm.submitted" class="invalid-feedback">Username is required</div>
+
+
+                    <div class="form-outline mb-4">
+                        <input name="firstName" type="text" id="form3Example3" class="form-control form-control-lg"
+                            placeholder="Enter your first name" [(ngModel)]="form.firstName" required #firstName="ngModel"
+                            [ngClass]="{ 'is-invalid': loginForm.submitted && firstName.errors }" />
+                        <label class="form-label" for="form3Example3">First Name</label>
+                    </div>
+
+                    <div *ngIf="firstName.errors && loginForm.submitted" class="invalid-feedback">First Name is required</div>
+
+
+                    <div class="form-outline mb-4">
+                        <input name="lastName" type="text" id="form3Example3" class="form-control form-control-lg"
+                            placeholder="Enter your last Name" [(ngModel)]="form.lastName" required #lastName="ngModel"
+                            [ngClass]="{ 'is-invalid': loginForm.submitted && lastName.errors }" />
+                        <label class="form-label" for="form3Example3">Last Name</label>
+                    </div>
+
+                    <div *ngIf="lastName.errors && loginForm.submitted" class="invalid-feedback">Last Name is required</div>
+
+
+                    <div class="form-outline mb-4">
+                        <input name="phone" type="text" id="form3Example3" class="form-control form-control-lg"
+                            placeholder="Enter your phone" [(ngModel)]="form.phone" required #phone="ngModel"
+                            [ngClass]="{ 'is-invalid': loginForm.submitted && phone.errors }" />
+                        <label class="form-label" for="form3Example3">Phone</label>
+                    </div>
+
+                    <div *ngIf="phone.errors && loginForm.submitted" class="invalid-feedback">Phone is required</div>
+
+                    <div class="form-outline mb-4">
+                        <input name="email" type="email" id="form3Example3" class="form-control form-control-lg"
+                            placeholder="Enter your email" [(ngModel)]="form.email" required #email="ngModel"
+                            [ngClass]="{ 'is-invalid': loginForm.submitted && email.errors }" />
+                        <label class="form-label" for="form3Example3">Email</label>
+                    </div>
+
+                    <div *ngIf="email.errors && loginForm.submitted" class="invalid-feedback">Email is required</div>
+
+                    <!-- Password input -->
+                    <div class="form-outline mb-3">
+                        <input name="password" type="password" name="password" [(ngModel)]="form.password" required minlength="3"
+                            #password="ngModel" [ngClass]="{ 'is-invalid': loginForm.submitted && password.errors }"
+                            id="form3Example4" class="form-control form-control-lg" placeholder="Enter password" />
+                        <label class="form-label" for="form3Example4">Password</label>
+                    </div>
+
+                    <div *ngIf="password.errors && loginForm.submitted" class="invalid-feedback">
+                        <div *ngIf="password.errors['required']">Password is required</div>
+                        <div *ngIf="password.errors['minlength']">
+                            Password must be at least 6 characters
+                        </div>
+                    </div>
+            
+
+            <div class="d-flex justify-content-between align-items-center">
+                <!-- Checkbox -->
+                <div class="form-check mb-0">
+                    <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
+                    <label class="form-check-label" for="form2Example3">
+                        Remember me
+                    </label>
+                </div>
+                <a href="#!" class="text-body">Are you a provider?</a>
+            </div>
+
+            <div class="text-center text-lg-start mt-4 pt-2">
+                <input type="submit" value="Login" class="btn btn-outline-primary form-control rounded-0">
+
+                <p class="small fw-bold mt-2 pt-1 mb-0">Already have an account? <a routerLink="/login"
+                        class="link-danger">Login</a></p>
+            </div>
+            <div class="form-group">
+                <div *ngIf="loginForm.submitted && isSignUpFailed" class="alert alert-danger" role="alert">
+                    Signup failed: {{ errorMessage }}
+                </div>
+            </div>
+            </form>
+        </div>
+        </div>
+    </div>
+</section>
