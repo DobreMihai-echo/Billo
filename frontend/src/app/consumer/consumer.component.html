@@ -1,1 +1,45 @@
-<p>consumer works!</p>
+<div class="consumer-container">
+  <h1>Active Invoices</h1>
+  <div class="invoices-container">
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col row-id">#</th>
+            <th scope="col col-title">Title</th>
+            <th scope="col col-received-date">Received Date</th>
+            <th scope="col col-dute-date">Due Date</th>
+            <th scope="col col-paid">Paid</th>
+            <th scope="col col-details">Details</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            scope="row"
+            *ngFor="let invoice of invoices; index as i"
+            (click)="goToInvoice(invoice, invoice.id)"
+          >
+            <th class="row-index index-{{ i }}">
+              {{ i }}
+            </th>
+            <td class="row-title title-{{ invoice.invoiceName }}">
+              {{ invoice.invoiceName }}
+            </td>
+            <td class="row-received-date">
+              {{ invoice.receivedDate | date }}
+            </td>
+            <td class="row-due-date">
+              {{ invoice.dueDate | date }}
+            </td>
+            <td class="row-paid">
+              {{ invoice.paid }}
+            </td>
+            <td class="row-value">
+              {{ invoice.value }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

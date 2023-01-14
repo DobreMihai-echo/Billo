@@ -1,48 +1,71 @@
 <!--Main Navigation-->
 <header>
-    <!-- Sidebar -->
-    <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-secondary">
-      <div class="position-sticky">
-        <div class="list-group list-group-flush mx-3 mt-4">
-          <a  class="list-group-item list-group-item-action py-2 ripple" aria-current="true" routerLink="/home">
-            <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Main home</span>
-          </a>
-          <a  class="list-group-item list-group-item-action py-2 ripple" aria-current="true" routerLink="/consumer">
-            <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Consumer Dashboard</span>
-          </a>
-          <a  class="list-group-item list-group-item-action py-2 ripple" aria-current="true" routerLink="/admin">
-            <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Admin Dashboard</span>
-          </a>
-          <button type="button" class="btn btn-success" routerLink="/login">Login</button>
-          <button type="button" class="btn btn-danger" routerLink="/register">Register</button>
-        </div>
+  <!-- Sidebar -->
+  <nav
+    id="sidebarMenu"
+    class="collapse d-lg-block sidebar collapse bg-secondary"
+  >
+    <div class="position-sticky">
+      <div class="list-group list-group-flush mx-3 mt-4">
+        <a
+          class="list-group-item list-group-item-action py-2 ripple"
+          aria-current="true"
+          routerLink="/home"
+        >
+          <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Main home</span>
+        </a>
+        <a
+          class="list-group-item list-group-item-action py-2 ripple"
+          aria-current="true"
+          routerLink="/consumer"
+        >
+          <i class="fas fa-tachometer-alt fa-fw me-3"></i
+          ><span>Consumer Dashboard</span>
+        </a>
+        <a
+          class="list-group-item list-group-item-action py-2 ripple"
+          aria-current="true"
+          routerLink="/admin"
+        >
+          <i class="fas fa-tachometer-alt fa-fw me-3"></i
+          ><span>Admin Dashboard</span>
+        </a>
+        <button type="button" class="btn btn-success" routerLink="/login">
+          Login
+        </button>
+        <button type="button" class="btn btn-danger" routerLink="/register">
+          Register
+        </button>
       </div>
-    </nav>
-    <!-- Sidebar -->
-  
-    <!-- Navbar -->
-    <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-secondary fixed-top">
-      <!-- Container wrapper -->
-      <div class="container-fluid">
-        <!-- Toggle button -->
-        <!-- <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#sidebarMenu"
+    </div>
+  </nav>
+  <!-- Sidebar -->
+
+  <!-- Navbar -->
+  <nav
+    id="main-navbar"
+    class="navbar navbar-expand-lg navbar-light bg-secondary fixed-top"
+  >
+    <!-- Container wrapper -->
+    <div class="container-fluid">
+      <!-- Toggle button -->
+      <!-- <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#sidebarMenu"
           aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
           <i class="fas fa-bars"></i>
         </button>
    -->
 
-        <!-- <button type="button"button class btn btn-success></button> -->
-        <!-- Brand -->
-        <!-- <a class="navbar-brand" href="#">
+      <!-- <button type="button"button class btn btn-success></button> -->
+      <!-- Brand -->
+      <!-- <a class="navbar-brand" href="#">
           <img src="https://mdbcdn.b-cdn.net/img/logo/mdb-transaprent-noshadows.webp" height="25" alt="MDB Logo"
             loading="lazy" />
         </a> -->
 
-  
-        <!-- Right links -->
-        <ul class="navbar-nav ms-auto d-flex flex-row">
-          <!-- Notification dropdown -->
-          <!-- <li class="nav-item dropdown">
+      <!-- Right links -->
+      <ul class="navbar-nav ms-auto d-flex flex-row">
+        <!-- Notification dropdown -->
+        <!-- <li class="nav-item dropdown">
             <a class="nav-link me-3 me-lg-0 dropdown-toggle hidden-arrow" href="#" id="navbarDropdownMenuLink"
               role="button" data-mdb-toggle="dropdown" aria-expanded="false">
               <i class="fas fa-bell"></i>
@@ -60,22 +83,22 @@
               </li>
             </ul>
           </li> -->
-  
-          <!-- Icon -->
-          <!-- <li class="nav-item">
+
+        <!-- Icon -->
+        <!-- <li class="nav-item">
             <a class="nav-link me-3 me-lg-0" href="#">
               <i class="fas fa-fill-drip"></i>
             </a>
           </li> -->
-          <!-- Icon -->
-          <!-- <li class="nav-item me-3 me-lg-0">
+        <!-- Icon -->
+        <!-- <li class="nav-item me-3 me-lg-0">
             <a class="nav-link" href="#">
               <i class="fab fa-github"></i>
             </a>
           </li> -->
-  
-          <!-- Icon dropdown -->
-          <!-- <li class="nav-item dropdown">
+
+        <!-- Icon dropdown -->
+        <!-- <li class="nav-item dropdown">
             <a class="nav-link me-3 me-lg-0 dropdown-toggle hidden-arrow" href="#" id="navbarDropdown"
               role="button" data-mdb-toggle="dropdown" aria-expanded="false">
               <i class="united kingdom flag m-0"></i>
@@ -114,9 +137,9 @@
               </li>
             </ul>
           </li> -->
-  
-          <!-- Avatar -->
-          <!-- <li class="nav-item dropdown">
+
+        <!-- Avatar -->
+        <!-- <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle hidden-arrow d-flex align-items-center" href="#"
               id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
               <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img (31).webp" class="rounded-circle"
@@ -134,16 +157,16 @@
               </li>
             </ul>
           </li> -->
-        </ul>
-      </div>
-      <!-- Container wrapper -->
-    </nav>
-    <!-- Navbar -->
-  </header>
-  <!--Main Navigation-->
-  
-  <!--Main layout-->
-  <main style="margin-top: 58px;">
-    <div class="container pt-4"></div>
-  </main>
-  <!--Main layout-->
+      </ul>
+    </div>
+    <!-- Container wrapper -->
+  </nav>
+  <!-- Navbar -->
+</header>
+<!--Main Navigation-->
+
+<!--Main layout-->
+<main style="margin-top: 58px">
+  <div class="container pt-4"></div>
+</main>
+<!--Main layout-->
