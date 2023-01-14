@@ -28,11 +28,18 @@ public class AppUser {
     private Long id;
 
     private String username;
+    private String firstName;
+    private String lastName;
     private String password;
     private String email;
+    private boolean accountVerified;
+    private String phone;
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_roles",
                joinColumns = @JoinColumn(name = "user_id"),
                 inverseJoinColumns = @JoinColumn(name ="role_id"))
     private Set<AppRole> roles = new HashSet<>();
+
+//    @OneToMany(mappedBy = "user")
+//    private Set tokens;
 }

@@ -1,18 +1,29 @@
 package com.billo.user.controller;
 
 
+import com.billo.clients.models.Message;
 import com.billo.user.jwt.JwtConfig;
 import com.billo.user.model.AppRole;
 import com.billo.user.model.AppUser;
 import com.billo.user.model.ERole;
+import com.billo.user.model.SecureToken;
 import com.billo.user.payload.request.LoginRequest;
 import com.billo.user.payload.request.SignUpRequest;
 import com.billo.user.payload.response.JwtResponse;
 import com.billo.user.repository.RoleRepository;
 import com.billo.user.repository.UserRepository;
+import com.billo.user.service.SecureTokenService;
 import com.billo.user.service.UserDetailsImpl;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.kafka.support.KafkaHeaders;
+import org.springframework.messaging.support.MessageBuilder;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -22,13 +33,14 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping(value = "/api/auth",consumes= MediaType.APPLICATION_JSON_VALUE,
+        produces=MediaType.APPLICATION_JSON_VALUE)
 public class AuthController {
-
     @Autowired
     UserRepository userRepository;
 
@@ -44,7 +56,14 @@ public class AuthController {
     @Autowired
     PasswordEncoder passwordEncoder;
 
+    @Autowired
+    KafkaTemplate<String, Message> kafkaTemplate;
+
+    @Autowired
+    SecureTokenService service;
+
     @PostMapping("/signin")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<?> authenticateUser(@RequestBody LoginRequest loginRequest) {
 
         Authentication authentication = authenticationManager.authenticate(
@@ -67,6 +86,7 @@ public class AuthController {
 
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@RequestBody SignUpRequest signUpRequest) {
+        System.out.println("RECEIVED:" + signUpRequest);
         if (userRepository.existsByUsername(signUpRequest.getUsername())) {
             return ResponseEntity.badRequest().body("Username is already in use!");
         }
@@ -80,15 +100,18 @@ public class AuthController {
                 .username(signUpRequest.getUsername())
                 .email(signUpRequest.getEmail())
                 .password(passwordEncoder.encode(signUpRequest.getPassword()))
+                .accountVerified(false)
                 .build();
 
         Set<String> setRoles = signUpRequest.getRole();
         Set<AppRole> roles = new HashSet<>();
 
+        Message message = new Message();
         if (setRoles == null) {
             AppRole userRole = roleRepository.findByName(ERole.ROLE_CONSUMER)
                     .orElseThrow(() -> new RuntimeException("Role not found"));
             roles.add(userRole);
+
         } else {
             setRoles.forEach(role -> {
                 switch (role) {
@@ -107,16 +130,53 @@ public class AuthController {
                     default:
                         AppRole userRole = roleRepository.findByName(ERole.ROLE_CONSUMER)
                                 .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-                        roles.add(userRole);
                 }
             });
         }
 
         user.setRoles(roles);
         userRepository.save(user);
+//        org.springframework.messaging.Message<Message> message1 = MessageBuilder.withPayload(message).setHeader(KafkaHeaders.TOPIC,"user_topics")
+//                .build();
+        message.setToEmail(user.getEmail());
+        message.setToPhone(user.getPhone());
+        message.setUsername(user.getUsername());
+        message.setFullName(user.getFirstName() + " " + user.getLastName());
+        message.setMessage("Welcome to Billo Application. This is a test message");
+        kafkaTemplate.send("user_topics",message);
 
         //TODO: Must find a way to add providers. Providers shouldn't have access to their account, until the admin approved their request. Make the account enabled when the admin approves
         //TODO: Send an email, that will enable the account for the ROLE_CONSUMER, the ROLE_PROVIDER, it must be approved by an admin
         return ResponseEntity.ok("User registered successfully!");
     }
+
+    @GetMapping("/users")
+    @PreAuthorize("hasRole('CONSUMER')")
+    public String access() {
+        return "hello";
+    }
+
+//    @GetMapping("/verify")
+//    public String verifyCustomer(@RequestParam(required = false) String token){
+//
+//        try {
+//            verifyUser(token);
+//        } catch (Exception e) {
+//
+//        }
+//    }
+//
+//    public boolean verifyUser(String token) {
+//        SecureToken secureToken = service.findByToken(token);
+//        AppUser user = userRepository.getOne(secureToken.getUser().getId());
+//        if (Objects.isNull(user)) {
+//            return false;
+//        }
+//        user.setAccountVerified(true);
+//        userRepository.save(user); // let’s same user details
+//
+//        // we don’t need invalid password now
+//        service.removeToken(secureToken);
+//        return true;
+//    }
 }

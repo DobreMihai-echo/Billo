@@ -28,6 +28,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 .map(role -> new SimpleGrantedAuthority(role.getName().name()))
                 .collect(Collectors.toList());
 
+        System.out.println("USER HAS:" + authorities);
         return UserDetailsImpl
                     .builder()
                     .username(user.getUsername())

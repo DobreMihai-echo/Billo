@@ -7,6 +7,7 @@ import com.billo.user.service.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -23,7 +24,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+@EnableGlobalMethodSecurity(prePostEnabled = true,securedEnabled = true)
 
 public class WebSecurityConfig {
 
@@ -67,7 +68,7 @@ public class WebSecurityConfig {
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring().antMatchers("/js/**", "/images/**");
+        return (web) -> web.ignoring().antMatchers("/js/**", "/images/**","/api/auth/**","api/v2/spans");
     }
 
     @Bean
@@ -82,10 +83,10 @@ public class WebSecurityConfig {
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-                .authorizeRequests()
-                .antMatchers("/api/auth/**").permitAll()
-                    .anyRequest()
-                    .authenticated();
+                .authorizeRequests().antMatchers("/users").hasRole("CONSUMER")
+                .anyRequest()
+                .authenticated();
+
 
        http.addFilterBefore(new JwtTokenFilter(jwtConfig), UsernamePasswordAuthenticationFilter.class);
 

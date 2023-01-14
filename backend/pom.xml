@@ -9,6 +9,8 @@
 	<modules>
 		<module>user</module>
         <module>eureka-server</module>
+		<module>notification</module>
+        <module>clients</module>
     </modules>
 	<name>backend</name>
 	<description>Backend Application for Billo Project</description>
@@ -26,6 +28,10 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-openfeign</artifactId>
 		</dependency>
 	</dependencies>
 
