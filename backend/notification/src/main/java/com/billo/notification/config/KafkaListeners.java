@@ -35,4 +35,13 @@ public class KafkaListeners {
         }
     }
 
+    @KafkaListener(topics = "provider-approval")
+    void listener2(Message data) throws IllegalAccessException, IOException, MessagingException, TemplateException {
+        log.info("RECEIVED PPP");
+        System.out.println("ReceivedP2affvbvsdsdAFASSFGAFGAGFGAGG:" + data);
+        if (data.getToEmail()!=null) {
+            emailService.sendEmail2(data);
+        }
+    }
+
 }

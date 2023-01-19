@@ -1,8 +1,14 @@
+import { User } from "./user.model";
+
 export interface Invoice {
   id: number;
   invoiceName: string;
-  receivedDate: Date;
+  createdAt: Date;
   dueDate: Date;
-  paid: string;
-  value: string;
+  payed: boolean;
+  providerName: string;
+  price:number;
+  user:User;
+  userName:string;
+  userEmail:string;
 }

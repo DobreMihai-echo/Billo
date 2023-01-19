@@ -1,6 +1,8 @@
 package com.billo.user.service;
 
+import com.billo.user.model.AppRole;
 import com.billo.user.model.AppUser;
+import com.billo.user.model.ERole;
 import com.billo.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -27,18 +29,33 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         List<GrantedAuthority> authorities = user.getRoles().stream()
                 .map(role -> new SimpleGrantedAuthority(role.getName().name()))
                 .collect(Collectors.toList());
+        boolean enabled = false;
+        if (!user.getRoles().stream().filter(role -> role.getName().equals(ERole.ROLE_ADMIN)).collect(Collectors.toList()).isEmpty()) {
+            enabled=true;
+        } else {
+            enabled  = user.isAccountVerified();
+        }
+        return
+                //User.withUsername(user.getUsername()).password(user.getPassword()).disabled(enabled).authorities(authorities).build();
 
-        System.out.println("USER HAS:" + authorities);
-        return UserDetailsImpl
+                    UserDetailsImpl
                     .builder()
                     .username(user.getUsername())
                     .email(user.getEmail())
                     .password(user.getPassword())
                 .authorities(authorities)
                 .isAccountNonLocked(true)
-                .isEnabled(true)
+                .isEnabled(enabled)
                 .isCredentialsNonExpired(true)
                 .isAccountNonExpired(true)
                 .build();
+    }
+
+    public int enableAppUser(String username) {
+        try {
+            return userRepository.enableAppUser(username);
+        } catch (Exception ex) {
+            throw new RuntimeException(ex.getMessage());
+        }
     }
 }

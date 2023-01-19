@@ -21,4 +21,9 @@ public class KafkaTopicConfig {
     public NewTopic topic() {
         return TopicBuilder.name(topicName).build();
     }
+
+    @Bean
+    public NewTopic topic2() {
+        return TopicBuilder.name("provider-approval").build();
+    }
 }

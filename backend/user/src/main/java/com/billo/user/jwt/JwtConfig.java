@@ -1,12 +1,14 @@
 package com.billo.user.jwt;
 
 import com.billo.user.service.UserDetailsImpl;
+import com.billo.user.service.UserServiceImpl;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import io.jsonwebtoken.security.SignatureException;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
@@ -20,6 +22,9 @@ import java.util.Date;
 @Data
 @Slf4j
 public class JwtConfig {
+
+    @Autowired
+    UserServiceImpl userService;
 
     private String secretKey;
     private String tokenPrefix;
@@ -56,5 +61,9 @@ public class JwtConfig {
             log.error("JWT claims string is empty: {}", e.getMessage());
         }
         return false;
+    }
+
+    public String getUsername() {
+        return userService.getLoggedInUserName();
     }
 }

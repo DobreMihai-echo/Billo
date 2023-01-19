@@ -12,13 +12,26 @@ export class InvoiceComponent implements OnInit {
   id: number = 0;
   private sub: any;
 
+  private user = {
+    id:0,
+    username: 'username',
+    firstName:'',
+    lastName:'',
+    email:'',
+    phone:'',
+  }
+
   invoice: Invoice = {
     id: 0,
     invoiceName: '',
-    receivedDate: new Date(),
+    createdAt: new Date(),
     dueDate: new Date(),
-    paid: 'no',
-    value: '',
+    payed: true,
+    price: 20.09,
+    providerName:'',
+    user: this.user,
+    userName: '',
+    userEmail:'',
   };
 
   constructor(

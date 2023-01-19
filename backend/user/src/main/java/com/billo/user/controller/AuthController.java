@@ -14,15 +14,10 @@ import com.billo.user.repository.RoleRepository;
 import com.billo.user.repository.UserRepository;
 import com.billo.user.service.SecureTokenService;
 import com.billo.user.service.UserDetailsImpl;
-import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.kafka.core.KafkaTemplate;
-import org.springframework.kafka.support.KafkaHeaders;
-import org.springframework.messaging.support.MessageBuilder;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -31,10 +26,12 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Objects;
 import java.util.Set;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @RestController
@@ -91,15 +88,16 @@ public class AuthController {
             return ResponseEntity.badRequest().body("Username is already in use!");
         }
 
-        if (userRepository.existsByEmail(signUpRequest.getEmail())) {
-            return ResponseEntity.badRequest().body("Email is already in use");
-        }
+//        if (userRepository.existsByEmail(signUpRequest.getEmail())) {
+//            return ResponseEntity.badRequest().body("Email is already in use");
+//        }
 
         AppUser user = AppUser
                 .builder()
                 .username(signUpRequest.getUsername())
                 .email(signUpRequest.getEmail())
                 .password(passwordEncoder.encode(signUpRequest.getPassword()))
+                .phone(signUpRequest.getPhone())
                 .accountVerified(false)
                 .build();
 
@@ -138,22 +136,39 @@ public class AuthController {
         userRepository.save(user);
 //        org.springframework.messaging.Message<Message> message1 = MessageBuilder.withPayload(message).setHeader(KafkaHeaders.TOPIC,"user_topics")
 //                .build();
-        message.setToEmail(user.getEmail());
-        message.setToPhone(user.getPhone());
-        message.setUsername(user.getUsername());
-        message.setFullName(user.getFirstName() + " " + user.getLastName());
-        message.setMessage("Welcome to Billo Application. This is a test message");
-        kafkaTemplate.send("user_topics",message);
+
+        if (!user.getRoles().contains(roleRepository.findByName(ERole.ROLE_PROVIDER).get())) {
+
+            String token = UUID.randomUUID().toString();
+            SecureToken secureToken = new SecureToken();
+            secureToken.setToken(token);
+            secureToken.setLocalDateTime(LocalDateTime.now());
+            secureToken.setExpireAt(LocalDateTime.now().plusMinutes(15));
+            secureToken.setUser(user);
+
+            service.saveSecureToken(secureToken);
+
+            String link = "http://localhost:8070/api/auth/confirm?token=" + token;
+
+            message.setToEmail(user.getEmail());
+            message.setToPhone(user.getPhone());
+            message.setUsername(user.getUsername());
+            message.setMessage("Welcome to Billo Application. This is a test message");
+            message.setToken(link);
+            kafkaTemplate.send("user_topics2",message);
+        }
+
+
+
 
         //TODO: Must find a way to add providers. Providers shouldn't have access to their account, until the admin approved their request. Make the account enabled when the admin approves
         //TODO: Send an email, that will enable the account for the ROLE_CONSUMER, the ROLE_PROVIDER, it must be approved by an admin
         return ResponseEntity.ok("User registered successfully!");
     }
 
-    @GetMapping("/users")
-    @PreAuthorize("hasRole('CONSUMER')")
-    public String access() {
-        return "hello";
+    @GetMapping(path = "confirm")
+    public String confirm(@RequestParam("token") String token) {
+        return service.confirmToken(token);
     }
 
 //    @GetMapping("/verify")
@@ -179,4 +194,5 @@ public class AuthController {
 //        service.removeToken(secureToken);
 //        return true;
 //    }
+
 }

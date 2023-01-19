@@ -11,6 +11,7 @@
         <module>eureka-server</module>
 		<module>notification</module>
         <module>clients</module>
+        <module>paymentinvoice</module>
     </modules>
 	<name>backend</name>
 	<description>Backend Application for Billo Project</description>

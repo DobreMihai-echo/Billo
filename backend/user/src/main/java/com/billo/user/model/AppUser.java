@@ -1,15 +1,14 @@
 package com.billo.user.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "users",
@@ -32,7 +31,7 @@ public class AppUser {
     private String lastName;
     private String password;
     private String email;
-    private boolean accountVerified;
+    private boolean accountVerified = false;
     private String phone;
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_roles",
@@ -42,4 +41,17 @@ public class AppUser {
 
 //    @OneToMany(mappedBy = "user")
 //    private Set tokens;
+
+
+    @OneToMany
+    @JsonManagedReference
+    private List<Order> orders;
+
+    @OneToMany
+    @JsonManagedReference
+    private List<Invoice> invoices;
+
+//    @ManyToMany(mappedBy = "subscribedCustomers", cascade = CascadeType.ALL)
+//    @JsonIgnore
+//    private Set<Order> subscribedOrders = new HashSet<>();
 }

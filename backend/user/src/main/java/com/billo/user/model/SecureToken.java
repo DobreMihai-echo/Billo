@@ -1,7 +1,9 @@
 package com.billo.user.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
+import reactor.util.annotation.Nullable;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -12,7 +14,7 @@ import java.time.LocalDateTime;
 @Data
 public class SecureToken{
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(unique = true)
@@ -23,11 +25,14 @@ public class SecureToken{
 
     @CreationTimestamp
     @Column(updatable = false)
-    private Timestamp timeStamp;
+    private LocalDateTime localDateTime;
 
     @Column(updatable = false)
     @Basic(optional = false)
     private LocalDateTime expireAt;
+
+    @Column(nullable = true)
+    private LocalDateTime confirmedAt;
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName ="id")

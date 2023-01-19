@@ -68,7 +68,7 @@ public class WebSecurityConfig {
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring().antMatchers("/js/**", "/images/**","/api/auth/**","api/v2/spans");
+        return (web) -> web.ignoring().antMatchers("/js/**", "/images/**","api/v2/spans");
     }
 
     @Bean
@@ -83,7 +83,7 @@ public class WebSecurityConfig {
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-                .authorizeRequests().antMatchers("/users").hasRole("CONSUMER")
+                .authorizeRequests().antMatchers("/api/auth/**").permitAll()
                 .anyRequest()
                 .authenticated();
 

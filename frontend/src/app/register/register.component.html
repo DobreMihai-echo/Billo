@@ -75,19 +75,18 @@
             <div class="d-flex justify-content-between align-items-center">
                 <!-- Checkbox -->
                 <div class="form-check mb-0">
-                    <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
+                    <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" (change)="checkCheckBoxvalue($event)"/>
                     <label class="form-check-label" for="form2Example3">
-                        Remember me
+                        Are you a provider?
                     </label>
                 </div>
-                <a href="#!" class="text-body">Are you a provider?</a>
             </div>
 
             <div class="text-center text-lg-start mt-4 pt-2">
                 <input type="submit" value="Login" class="btn btn-outline-primary form-control rounded-0">
 
                 <p class="small fw-bold mt-2 pt-1 mb-0">Already have an account? <a routerLink="/login"
-                        class="link-danger">Login</a></p>
+                        class="link-danger">Register</a></p>
             </div>
             <div class="form-group">
                 <div *ngIf="loginForm.submitted && isSignUpFailed" class="alert alert-danger" role="alert">

@@ -17,8 +17,8 @@
               </td>
               <td>
                 Invoice #: {{ id }}<br />
-                Created: January 1, 2015<br />
-                Due: February 1, 2015
+                Created: {{ invoice.createdAt }}<br />
+                Due: {{ invoice.createdAt }}
               </td>
             </tr>
           </table>
@@ -35,40 +35,20 @@
               </td>
               <td>
                 {{ invoice.invoiceName }}<br />
-                John Doe<br />
-                john@example.com
+                {{invoice.userName}}<br />
+                {{invoice.userEmail}}
               </td>
             </tr>
           </table>
         </td>
       </tr>
       <tr class="heading">
-        <td>Payment Method</td>
-        <td>Check #</td>
-      </tr>
-      <tr class="details">
-        <td>Check</td>
-        <td>1000</td>
-      </tr>
-      <tr class="heading">
         <td>Item</td>
         <td>Price</td>
       </tr>
-      <tr class="item">
-        <td>Website design</td>
-        <td>{{ invoice.value }}</td>
-      </tr>
-      <tr class="item">
-        <td>Hosting (3 months)</td>
-        <td>{{ invoice.value }}</td>
-      </tr>
-      <tr class="item last">
-        <td>Domain name (1 year)</td>
-        <td>{{ invoice.value }}</td>
-      </tr>
       <tr class="total">
         <td></td>
-        <td>{{ invoice.value }}</td>
+        <td>{{ invoice.price }}</td>
       </tr>
     </table>
   </div>

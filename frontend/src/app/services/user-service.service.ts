@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
-const API_URL = 'http://localhost:8080/api/test/';
+const AUTH_API = 'http://localhost:8070/api/v1';
+
 
 @Injectable({
   providedIn: 'root'
@@ -11,19 +13,14 @@ export class UserService {
 
   constructor(private http: HttpClient) {}
 
-  getPublicContent(): Observable<any> {
-    return this.http.get(API_URL + 'all', { responseType: 'text' });
-  }
+  // searchOrders(query: string) {
+  //   return this.http.post<{payload: Array<>}>(AUTH_API+'/order/all',{payload: query},
+  //   {headers: new HttpHeaders({'Content-Type': 'application/json'})
+  // }).pipe(
+  //   map(data => data.payload)
+  // );
+  // }
 
-  getUserBoard(): Observable<any> {
-    return this.http.get(API_URL + 'user', { responseType: 'text' });
-  }
+
   
-  getModeratorBoard(): Observable<any> {
-    return this.http.get(API_URL + 'mod', { responseType: 'text' });
-  }
-
-  getAdminBoard(): Observable<any> {
-    return this.http.get(API_URL + 'admin', { responseType: 'text' });
-  }
 }

@@ -12,8 +12,8 @@ import lombok.NoArgsConstructor;
 public class Message {
 
     String username;
-    String fullName;
     String toEmail;
     String toPhone;
     String message;
+    String token;
 }

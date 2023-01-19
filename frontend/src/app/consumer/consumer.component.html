@@ -11,13 +11,14 @@
             <th scope="col col-dute-date">Due Date</th>
             <th scope="col col-paid">Paid</th>
             <th scope="col col-details">Details</th>
+            <th scope="col col-actuibs">Actions</th>
           </tr>
         </thead>
         <tbody>
           <tr
             scope="row"
             *ngFor="let invoice of invoices; index as i"
-            (click)="goToInvoice(invoice, invoice.id)"
+            (click)="goToInvoice(invoice, invoice.id,$event)"
           >
             <th class="row-index index-{{ i }}">
               {{ i }}
@@ -26,16 +27,19 @@
               {{ invoice.invoiceName }}
             </td>
             <td class="row-received-date">
-              {{ invoice.receivedDate | date }}
+              {{ invoice.createdAt | date }}
             </td>
             <td class="row-due-date">
               {{ invoice.dueDate | date }}
             </td>
             <td class="row-paid">
-              {{ invoice.paid }}
+              {{ invoice.payed }}
             </td>
             <td class="row-value">
-              {{ invoice.value }}
+              {{ invoice.price }}
+            </td>
+            <td class="row-actions">
+              <button (click)="pay(invoice.id,$event)" class="btn btn-primary">Pay</button>
             </td>
           </tr>
         </tbody>

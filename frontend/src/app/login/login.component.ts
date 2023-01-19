@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { StorageService } from '../services/storage.service';
 
@@ -18,7 +19,9 @@ export class LoginComponent implements OnInit {
   errorMessage = '';
   roles: string[] = [];
 
-  constructor(private authService: AuthService, private storageService: StorageService) { }
+  constructor(private authService: AuthService, 
+    private storageService: StorageService,
+    private router: Router) { }
 
   ngOnInit(): void {
     if (this.storageService.isLoggedIn()) {
@@ -29,20 +32,26 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(loginForm: any): void {
-    const { username, password } = this.form;
-    console.log("USERNAME" + loginForm.value);
+    console.log("USERNAME" + loginForm.value.username);
 
-    this.authService.login(loginForm.value.userName, loginForm.value.password).subscribe({
+    this.authService.login(loginForm.value.username, loginForm.value.password).subscribe({
       next: data => {
         this.storageService.saveUser(data);
 
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.storageService.getUser().roles;
-        this.reloadPage();
+        if(data.roles[0] === 'ROLE_CONSUMER') {
+          this.router.navigate(['/consumer']);
+        } else if (data.roles[0] == 'ROLE_ADMIN') {
+          this.router.navigate(['/admin']);
+        } else {
+          this.router.navigate(['/provider']);
+        }
       },
       error: err => {
-        this.errorMessage = err.error.message;
+        console.log("ERROR",err)
+        this.errorMessage = err.error;
         this.isLoginFailed = true;
       }
     });
